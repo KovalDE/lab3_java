@@ -7,9 +7,9 @@ import java.util.concurrent.Executors;
 public class HighLevel {
     public static void main(final String[] args) {
         final ExecutorService executor = Executors.newFixedThreadPool(3);
-        executor.submit(()->CalculatorAction.calc1(5,5));
-        executor.submit(()->CalculatorAction.calc2(5,5));
-        executor.submit(()->CalculatorAction.calc3(5,5));
+        executor.submit(()->CalculatorAction.action1(35,4));
+        executor.submit(()->CalculatorAction.action2(6,7));
+        executor.submit(()->CalculatorAction.action3(20,5));
 
 
         try{

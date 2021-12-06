@@ -15,19 +15,19 @@ public class LowLevel {
         public static class SimpleThread1 extends Thread{
             @Override
             public void run() {
-                CalculatorAction.calc1(15,3);
+                CalculatorAction.action1(15,3);
             }
         }
         public static class SimpleThread2 extends Thread{
             @Override
             public void run() {
-                CalculatorAction.calc2(16,9);
+                CalculatorAction.action2(16,9);
             }
         }
         public static class SimpleThread3 extends Thread{
             @Override
             public void run() {
-                CalculatorAction.calc3(12,5);
+                CalculatorAction.action3(12,5);
             }
         }
 
