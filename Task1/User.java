@@ -75,7 +75,7 @@ public class User {
         if (adress == null) {
             list.add("Your adress is empty");
         }
-        if (email.matches(".*\\d+.*") || email.matches(".*\\s+.*")) {
+        if (email == null) {
             list.add("Your email is not correct");
         }
 
