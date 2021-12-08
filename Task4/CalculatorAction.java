@@ -15,7 +15,7 @@ public class CalculatorAction {
 
     public static void action3(final double a, final double b){
         System.out.println("action3");
-        System.out.println(a*b + " action2");
+        System.out.println(a*b + " action3");
     }
 
 }
