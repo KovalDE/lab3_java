@@ -89,9 +89,6 @@ public class Student {
     public void addMark(final int value, final String nameSubject) {
         for (int i = 0; i < subject.size(); i++) {
             if (subject.get(i).getNameSubject() == nameSubject) {
-                if (value > 12 || value < 0)
-                    marks.get(i).getMark().add(12);
-                else
                     marks.get(i).getMark().add(value);
             }
         }
@@ -108,26 +105,17 @@ public class Student {
     }
 
     public double averageMark() {
-        double tmp = 0;
+        double sum = 0;
         int count = 0;
 
         for (final Mark mark : marks) {
-            tmp += mark.getMark().stream().mapToInt(value -> value).sum();
+            sum += mark.getMark().stream().mapToInt(value -> value).sum();
             count += mark.getMark().stream().mapToInt(value -> value).count();
         }
         if(count != 0)
-            return tmp/count;
+            return sum/count;
         else
             return 0;
-    }
-
-    public List<Integer> printMarkEnglish() {  // змінити!
-        for (int i = 0; i < subject.size(); i++) {
-            if (subject.get(i).getNameSubject().equals("English")) {
-                return marks.get(i).getMark().stream().distinct().collect(Collectors.toList());
-            }
-        }
-        return new ArrayList<>();
     }
 
     @Override

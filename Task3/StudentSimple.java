@@ -41,7 +41,7 @@ public class StudentSimple {
         this.id = id;
     }
 
-    public List<StudentSimple> transformationList(final List<Student> students) {
+    public List<StudentSimple> transform(final List<Student> students) {
         return students.stream()
                 .map(StudentSimple::new)
                 .collect(Collectors.toList());

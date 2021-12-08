@@ -32,6 +32,36 @@ public class Students {
         }
     }
 
+    public Student getBestStudent() {
+        return students.stream()
+               // .reduce(Integer.MAX_VALUE, (left, right) -> left < right ? left : right)
+                .reduce((a, b) -> a.averageMark() > b.averageMark() ? a : b)
+                .get();
+    }
+
+    public List<Student> studentsWithMarkMoreThanThree() {
+        return students.stream()
+                .filter(e -> e.averageMark() > 3)
+                .toList();
+    }
+
+    public List<Student> sort() {
+        return students.stream()
+                .sorted((a, b) -> {
+                    if (a.getSurName() != b.getSurName())
+                        return a.getSurName().compareTo(b.getSurName());
+                    else if (a.getName()!= b.getName())
+                        return a.getName().compareTo(b.getName());
+                    else return a.getFatherName().compareTo(b.getFatherName());
+                }).collect(Collectors.toList());
+    }
+
+    public String surnameWithDash() {
+        return students.stream()
+                .map(e -> e.getSurName())
+                .reduce((s1, s2) -> s1 + "-" + s2).orElse("No");
+    }
+
     @Override
     public String toString() {
         String res = "";
@@ -40,6 +70,7 @@ public class Students {
                     ", surName= " + student.getSurName();
             for (final Subject subject : student.getSubject()) {
                 res += ", subject= " + subject.getNameSubject() + "{ ";
+                // предмет -> оцінки з предмету -> повертаємо в get() від ліста загальних оцінок
                 for (final Integer txt : student.getMarks().get(student.getSubject().indexOf(subject)).getMark())
                     res += txt + " ";
                 res += "}";
@@ -47,34 +78,5 @@ public class Students {
             res += " }" + '\n';
         }
         return res;
-    }
-
-    public Student bestStudentStream() {
-        return students.stream()
-                .reduce((a, b) -> a.averageMark() > b.averageMark() ? a : b)
-                .get();
-    }
-
-    public List<Student> filterStudent() {
-        return students.stream()
-                .filter(e -> e.averageMark() > 3)
-                .toList();
-    }
-
-    public List<Student> sortStudents() {
-        return students.stream()
-                .sorted((o1, o2) -> {
-                    if (o1.getSurName() != o2.getSurName())
-                        return o1.getSurName().compareTo(o2.getSurName());
-                    else if (o1.getName()!= o2.getName())
-                        return o1.getName().compareTo(o2.getName());
-                    else return o1.getFatherName().compareTo(o2.getFatherName());
-                }).collect(Collectors.toList());
-    }
-
-    public String printSurnameHyphen() {
-        return students.stream()
-                .map(Student::getSurName)
-                .reduce((s1, s2) -> s1 + "-" + s2).orElse("No");
     }
 }
